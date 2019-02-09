@@ -5,6 +5,7 @@ services:
   - docker
 install:
   - yarn --ignore-engines
+  - docker pull bitnami/cassandra:latest
   - yarn test
   - yarn build
   - docker build -t turbologz/turbo-logz-applications-api:$TRAVIS_BUILD_NUMBER .
