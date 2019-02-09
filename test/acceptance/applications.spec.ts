@@ -18,8 +18,19 @@ describe('Applications', () => {
     });
 
     it('should create a new application instance', async () => {
-        const res = await client.post('/apps',).send({appId: 'id1', name: 'app1'}).expect(200);
+        const res = await client.post('/apps',).send({spaceId: 'space1', appId: 'id1', name: 'app1'}).expect(200);
 
-        expect(res.body).to.containEql({appId: 'id1', name: 'app1'});
+        expect(res.body).to.containEql({spaceId: 'space1', appId: 'id1', name: 'app1'});
+    });
+
+    it('should be able to get applications in a space', async () => {
+        await client.post('/apps',).send({spaceId: 'space1', appId: 'id1', name: 'app1'}).expect(200);
+        await client.post('/apps',).send({spaceId: 'space1', appId: 'id2', name: 'app2'}).expect(200);
+        await client.post('/apps',).send({spaceId: 'space2', appId: 'id3', name: 'app3'}).expect(200);
+        await client.post('/apps',).send({spaceId: 'space2', appId: 'id4', name: 'app4'}).expect(200);
+
+        const res = await client.get(`/apps?filter=${JSON.stringify({where: {spaceId: 'space2'}})}`).expect(200);
+
+        expect(res.body.length).to.eql(2);
     });
 });

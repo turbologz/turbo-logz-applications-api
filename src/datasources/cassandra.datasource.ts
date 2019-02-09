@@ -1,6 +1,6 @@
 import {inject} from '@loopback/core';
 import {juggler} from '@loopback/repository';
-import * as config from './cassandra.datasource.json';
+import {config} from './cassandra.datasource.config';
 
 export class CassandraDataSource extends juggler.DataSource {
     static dataSourceName = 'cassandra';
