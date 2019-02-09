@@ -23,7 +23,7 @@
     "tslint": "lb-tslint",
     "tslint:fix": "npm run tslint -- --fix",
     "pretest": "yarn build",
-    "test": "mocha -t 120000 -r ts-node/register src/**/*.spec.ts test/**/*.spec.ts",
+    "test": "mocha -t 120000 --exit -r ts-node/register src/**/*.spec.ts test/**/*.spec.ts",
     "test:dev": "lb-mocha --allow-console-logs dist/test/**/*.js && npm run posttest",
     "migrate": "node ./dist/src/migrate",
     "prestart": "npm run build",
