@@ -22,9 +22,8 @@
     "prettier:fix": "npm run prettier:cli -- --write",
     "tslint": "lb-tslint",
     "tslint:fix": "npm run tslint -- --fix",
-    "pretest": "npm run clean && npm run build",
-    "test": "lb-mocha --allow-console-logs \"dist/test\"",
-    "posttest": "npm run lint",
+    "pretest": "yarn build",
+    "test": "cross-env CASSANDRA_HOST=127.0.0.1 CASSANDRA_USERNAME=cassandra CASSANDRA_PASSWORD=cassandra mocha -t 120000 --exit -r ts-node/register src/**/*.spec.ts test/**/*.spec.ts",
     "test:dev": "lb-mocha --allow-console-logs dist/test/**/*.js && npm run posttest",
     "migrate": "node ./dist/src/migrate",
     "prestart": "npm run build",
@@ -52,13 +51,22 @@
     "@loopback/repository": "^1.1.4",
     "@loopback/rest": "^1.5.4",
     "@loopback/rest-explorer": "^1.1.7",
-    "@loopback/service-proxy": "^1.0.7"
+    "@loopback/service-proxy": "^1.0.7",
+    "@types/uuid": "^3.4.4",
+    "loopback-connector-cassandra": "^1.7.1",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@loopback/build": "^1.2.1",
     "@loopback/testlab": "^1.0.5",
     "@loopback/tslint-config": "^2.0.0",
+    "@types/async-retry": "^1.2.1",
     "@types/node": "^10.11.2",
+    "async-retry": "^1.2.3",
+    "cassandra-driver": "^4.0.0",
+    "cross-env": "^5.2.0",
+    "node-docker-api": "^1.1.22",
+    "ts-node": "^8.0.2",
     "tslint": "^5.12.0",
     "typescript": "^3.2.2"
   }
