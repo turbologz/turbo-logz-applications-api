@@ -2,7 +2,7 @@ import {Client, expect} from '@loopback/testlab';
 import {TurboLogzApplicationsApiApplication} from '../..';
 import {Container, setupApplication, startCassandraContainer} from '../test-helper';
 
-describe('PingController', () => {
+describe('Applications', () => {
     let app: TurboLogzApplicationsApiApplication;
     let client: Client;
     let cassandra: Container;
