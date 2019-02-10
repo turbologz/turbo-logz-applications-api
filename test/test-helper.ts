@@ -15,6 +15,7 @@ export async function setupApplication(): Promise<AppWithClient> {
     });
 
     await app.boot();
+    await app.initDB();
     await app.migrateSchema();
     await app.start();
 
@@ -60,11 +61,11 @@ export async function startCassandraContainer(): Promise<Container> {
 
         const client = new cassandra.Client({
             contactPoints: ['127.0.0.1'],
-            localDataCenter: 'datacenter1',
+            localDataCenter: 'DC1',
             authProvider: new PlainTextAuthProvider('cassandra', 'cassandra')
         });
 
-        const query = 'CREATE KEYSPACE IF NOT EXISTS turbo_logz_applications WITH replication = {\'class\': \'SimpleStrategy\', \'replication_factor\': \'1\'} AND durable_writes = true;';
+        const query = 'SELECT * FROM system_schema.keyspaces';
 
         await client.execute(query, []);
 

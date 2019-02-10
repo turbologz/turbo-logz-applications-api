@@ -6,6 +6,7 @@ export {TurboLogzApplicationsApiApplication};
 export async function main(options: ApplicationConfig = {}) {
     const app = new TurboLogzApplicationsApiApplication(options);
     await app.boot();
+    await app.initDB();
     await app.migrateSchema();
     await app.start();
 
