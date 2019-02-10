@@ -61,7 +61,7 @@ export async function startCassandraContainer(): Promise<Container> {
 
         const client = new cassandra.Client({
             contactPoints: ['127.0.0.1'],
-            localDataCenter: 'DC1',
+            localDataCenter: 'datacenter1',
             authProvider: new PlainTextAuthProvider('cassandra', 'cassandra')
         });
 

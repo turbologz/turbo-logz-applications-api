@@ -53,6 +53,7 @@
     "@loopback/rest-explorer": "^1.1.7",
     "@loopback/service-proxy": "^1.0.7",
     "@types/uuid": "^3.4.4",
+    "cassandra-driver": "^4.0.0",
     "loopback-connector-cassandra": "^1.7.1",
     "uuid": "^3.3.2"
   },
@@ -63,7 +64,6 @@
     "@types/async-retry": "^1.2.1",
     "@types/node": "^10.11.2",
     "async-retry": "^1.2.3",
-    "cassandra-driver": "^4.0.0",
     "cross-env": "^5.2.0",
     "node-docker-api": "^1.1.22",
     "ts-node": "^8.0.2",

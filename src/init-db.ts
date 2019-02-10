@@ -6,7 +6,7 @@ export async function initDB() {
 
     const client = new cassandra.Client({
         contactPoints: [CASSANDRA_HOST],
-        localDataCenter: 'DC1',
+        localDataCenter: 'datacenter1',
         authProvider: new PlainTextAuthProvider(CASSANDRA_USERNAME, CASSANDRA_PASSWORD)
     });
 
