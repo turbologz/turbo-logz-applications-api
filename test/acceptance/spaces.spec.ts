@@ -24,12 +24,12 @@ describe('Spaces', () => {
     });
 
     it('should be able to get spaces in a org', async () => {
-        await client.post('/spaces',).send({name: 'space1', orgId: 'org1'}).expect(200);
-        await client.post('/spaces',).send({name: 'space2', orgId: 'org1'}).expect(200);
-        await client.post('/spaces',).send({name: 'space3', orgId: 'org2'}).expect(200);
-        await client.post('/spaces',).send({name: 'space4', orgId: 'org2'}).expect(200);
+        await client.post('/spaces',).send({name: 'space1', orgId: 'test-org1'}).expect(200);
+        await client.post('/spaces',).send({name: 'space2', orgId: 'test-org1'}).expect(200);
+        await client.post('/spaces',).send({name: 'space3', orgId: 'test-org2'}).expect(200);
+        await client.post('/spaces',).send({name: 'space4', orgId: 'test-org2'}).expect(200);
 
-        const res = await client.get(`/spaces?filter=${JSON.stringify({where: {orgId: 'org1'}})}`).expect(200);
+        const res = await client.get(`/spaces?filter=${JSON.stringify({where: {orgId: 'test-org1'}})}`).expect(200);
 
         expect(res.body.length).to.eql(2);
     });
