@@ -14,6 +14,12 @@ export class Space extends Entity {
     type: 'string',
     required: true,
   })
+  orgId: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
   name: string;
 
 
