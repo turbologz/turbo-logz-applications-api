@@ -16,8 +16,8 @@ import {
     del,
     requestBody,
 } from '@loopback/rest';
-import {App} from '../models';
-import {AppRepository} from '../repositories';
+import { App } from '../models';
+import { AppRepository } from '../repositories';
 
 export class AppsController {
     constructor(
@@ -35,7 +35,9 @@ export class AppsController {
         },
     })
     async create(@requestBody() app: App): Promise<App> {
-        return await this.appRepository.create(app);
+        const foundApp = await this.appRepository.findOne({where: {name: app.name, spaceId: app.spaceId}});
+
+        return foundApp ? foundApp : await this.appRepository.create(app);
     }
 
     @get('/apps/count', {
